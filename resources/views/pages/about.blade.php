@@ -10,8 +10,8 @@
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="row justify-content-xl-center">
                         <div class="col-12 col-xl-11 about">
-                            <h2 class="mb-3">Who Are We?</h2>
-                            <p class="lead fs-4 text-secondary mb-3">We help people to build incredible brands and superior products. Our perspective is to furnish outstanding captivating services.</p>
+                            <h2 class="mb-3">Кто мы?</h2>
+                            <p class="lead fs-4 text-secondary mb-3">Мы помогаем автовладельцам поддерживать их транспортные средства в идеальном состоянии. Наша цель — обеспечить высококачественный сервис и безопасность вашего автомобиля.</p>
                             <div class="row gy-4 gy-md-0 gx-xxl-5X">
                                 <div class="col-12 col-md-6">
                                     <div class="d-flex">
@@ -22,7 +22,7 @@
                                         </div>
                                         <div>
                                             <h2 class="h4 mb-3">Versatile Brand</h2>
-                                            <p class="text-secondary mb-0">We are crafting a digital method that subsists life across all mediums.</p>
+                                            <p class="text-secondary mb-0">Мы создали современный автосервис, где профессионализм и инновационные технологии сочетаются с индивидуальным подходом к каждому клиенту.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                         </div>
                                         <div>
                                             <h2 class="h4 mb-3">Digital Agency</h2>
-                                            <p class="text-secondary mb-0">We believe in innovation by merging primary with elaborate ideas.</p>
+                                            <p class="text-secondary mb-0">Мы верим в прозрачность работы и используем цифровые технологии для диагностики, отслеживания ремонта и коммуникации с клиентами.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +51,8 @@
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="row justify-content-xl-center">
                         <div class="col-12 col-xl-11 about">
-                            <h2 class="mb-3">Who Are We?</h2>
-                            <p class="lead fs-4 text-secondary mb-3">We help people to build incredible brands and superior products. Our perspective is to furnish outstanding captivating services.</p>
+                            <h2 class="mb-3">А также...</h2>
+                            <p class="lead fs-4 text-secondary mb-3">Наш автосервис — это команда сертифицированных специалистов с многолетним опытом работы. Мы обслуживаем автомобили всех марок и моделей, используя оригинальные запчасти и современное оборудование.</p>
                             <div class="row gy-4 gy-md-0 gx-xxl-5X">
                                 <div class="col-12 col-md-6">
                                     <div class="d-flex">
@@ -63,7 +63,7 @@
                                         </div>
                                         <div>
                                             <h2 class="h4 mb-3">Versatile Brand</h2>
-                                            <p class="text-secondary mb-0">We are crafting a digital method that subsists life across all mediums.</p>
+                                            <p class="text-secondary mb-0">Мы предлагаем полный спектр услуг от планового ТО до сложного ремонта. Наша репутация построена на качестве, надежности и честных ценах без скрытых платежей</p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div>
                                             <h2 class="h4 mb-3">Digital Agency</h2>
-                                            <p class="text-secondary mb-0">We believe in innovation by merging primary with elaborate ideas.</p>
+                                            <p class="text-secondary mb-0">Мы внедрили систему онлайн-записи, SMS-уведомления о статусе ремонта и фотоотчеты выполненных работ. Наши клиенты всегда в курсе того, что происходит с их автомобилем.</p>
                                         </div>
                                     </div>
                                 </div>

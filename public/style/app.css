@@ -7,12 +7,15 @@ main{
     background-color: #2b3035;
     padding-bottom: 20px;
 }
-.cards{
-    width: 70%;
-    padding: 20px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+/*.cards{*/
+/*    width: 70%;*/
+/*    padding: 20px;*/
+/*    margin: 0 auto;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+.carousel-photo{
+    filter: brightness(60%);
 }
 .card{
     margin-right: 20px;
