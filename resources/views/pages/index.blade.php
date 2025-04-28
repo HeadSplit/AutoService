@@ -30,7 +30,7 @@
         </div>
 {{--        Тут @foreach ебаш--}}
         <div class="card" data-bs-theme="dark" style="width: 25rem; height: 400px;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/diagnos.jpg')}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Диагностика и ремонт двигателя</h5>
                 <p class="card-text">Профессиональная компьютерная диагностика, капитальный ремонт двигателей любой сложности, замена ГРМ и устранение течей</p>
@@ -40,35 +40,35 @@
 
 {{--        Тестовые--}}
         <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/TO.jpg')}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Техническое обслуживание</h5>
                 <p class="card-text">Регулярное ТО по регламенту производителя, замена масла и фильтров, обслуживание тормозной системы и ходовой части</p>
             </div>
         </div>
         <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/repair.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Ремонт электрооборудования</h5>
                 <p class="card-text">Диагностика и устранение неисправностей электросистем, ремонт стартеров, генераторов и блоков управления</p>
             </div>
         </div>
         <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/paint.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Кузовной ремонт и покраска</h5>
                 <p class="card-text">Восстановление геометрии кузова, удаление вмятин, профессиональная покраска в камере и полировка автомобиля.</p>
             </div>
         </div>
         <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/shini.avif')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Шиномонтаж и балансировка</h5>
                 <p class="card-text">Сезонная замена шин, балансировка колес, ремонт проколов, подбор и продажа новых шин и дисков.</p>
             </div>
         </div>
         <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
-            <img src="{{asset('images/1.jpg')}}" class="card-img-top" alt="...">
+            <img src="{{asset('images/dopka.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Установка дополнительного оборудования</h5>
                 <p class="card-text">Монтаж сигнализаций, парктроников, камер заднего вида и другого оборудования</p>
