@@ -28,46 +28,45 @@
             <h1 class="text-white">ЛЮБЫЕ ВИДЫ УСЛУГ</h1>
             <h1 class="text-danger">ДЛЯ ВАШЕГО АВТО</h1>
         </div>
-{{--        Тут @foreach ебаш--}}
-        <div class="card" data-bs-theme="dark" style="width: 25rem; height: 400px;">
-            <img src="{{asset('images/diagnos.jpg')}}" class="card-img-top" alt="...">
+
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
+            <img src="{{ asset('images/diagnos.jpg') }}" class="card-img-top" alt="..." style="height: 220px; object-fit: cover;">
             <div class="card-body">
                 <h5 class="card-title">Диагностика и ремонт двигателя</h5>
-                <p class="card-text">Профессиональная компьютерная диагностика, капитальный ремонт двигателей любой сложности, замена ГРМ и устранение течей</p>
+                <p class="card-text">Профессиональная компьютерная диагностика, капитальный ремонт двигателей любой сложности, замена ГРМ и устранение течей.</p>
             </div>
         </div>
-{{--        Ахуеешь, но тут @endforeach--}}
 
-{{--        Тестовые--}}
-        <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
+
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
             <img src="{{asset('images/TO.jpg')}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Техническое обслуживание</h5>
                 <p class="card-text">Регулярное ТО по регламенту производителя, замена масла и фильтров, обслуживание тормозной системы и ходовой части</p>
             </div>
         </div>
-        <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
             <img src="{{asset('images/repair.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Ремонт электрооборудования</h5>
                 <p class="card-text">Диагностика и устранение неисправностей электросистем, ремонт стартеров, генераторов и блоков управления</p>
             </div>
         </div>
-        <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
             <img src="{{asset('images/paint.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Кузовной ремонт и покраска</h5>
                 <p class="card-text">Восстановление геометрии кузова, удаление вмятин, профессиональная покраска в камере и полировка автомобиля.</p>
             </div>
         </div>
-        <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
             <img src="{{asset('images/shini.avif')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Шиномонтаж и балансировка</h5>
                 <p class="card-text">Сезонная замена шин, балансировка колес, ремонт проколов, подбор и продажа новых шин и дисков.</p>
             </div>
         </div>
-        <div class="card" data-bs-theme="dark" style="height: 400px; width: 25rem;">
+        <div class="card shadow" style="width: 25rem; background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f); border: none; color:white;">
             <img src="{{asset('images/dopka.jpg')}}" class="card-img-top" alt="..." height="265px">
             <div class="card-body">
                 <h5 class="card-title">Установка дополнительного оборудования</h5>
@@ -76,12 +75,13 @@
         </div>
 
 
-{{--        Конец тестовых--}}
+
         <div class="d-flex justify-content-center mt-4">
-            <a class="btn-danger btn text-decoration-none mb-5" href="{{route('create')}}">
-                <h1 class="text">Оставить заявку</h1>
+            <a class="btn btn-danger text-white fw-semibold px-4 py-2 mb-5" href="{{ route('create') }}">
+                Оставить заявку
             </a>
         </div>
+
 
 
     </div>

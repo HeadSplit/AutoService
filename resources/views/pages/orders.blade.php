@@ -3,7 +3,7 @@
 @section('main')
     <h1 style="color: #FFFFFF; text-align: center; padding: 20px 0">Заказы</h1>
     <table class="flat-table flat-table-1">
-        <thead>
+        <thead style="background: #ff0000">
         <th>ФИО клиента</th>
         <th>Мастер</th>
         <th>Машина</th>
@@ -13,10 +13,9 @@
         <th>Услуга</th>
         <th>Статус</th>
         <th>Примерная дата окончания</th>
-        <th>Проблема</th>
         <th>Действие</th>
         </thead>
-        <tbody>
+        <tbody style="background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f);">
         @foreach($orders as $order)
             <form action="{{ route('order.edit', $order->id) }}" method="get">
                 @csrf
@@ -63,10 +62,7 @@
                         @enderror
                     </td>
                     <td>
-                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-info">Редактировать</button>
+                        <a href="{{ route('order.edit', $order->id) }}" class="btn btn-info">Редактировать</a>
                     </td>
                 </tr>
             </form>
