@@ -95,7 +95,7 @@ class OrderController extends Controller
                 'price' => 'nullable|numeric|min:0',
                 'description' => 'nullable|string',
                 'status' => 'required|in:Формируется,Начат,В работе,Выполнен,Отменен',
-                'EndTime' => 'nullable|date',
+                'EndTime' => 'sometimes',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:8192',
                 'remove_image' => 'nullable|boolean'
             ], [

@@ -130,7 +130,7 @@
                 <tr>
                     <td>Дата завершения</td>
                     <td>
-                        <input type="date" name="end_time" value="{{ \Carbon\Carbon::parse($order->EndTime)->format('Y-m-d') }}"
+                        <input type="date" name="EndTime" value="{{ \Carbon\Carbon::parse($order->EndTime)->format('Y-m-d') }}"
                                class="form-control @error('end_time') is-invalid @enderror">
                         @error('end_time')
                         <div class="invalid-feedback">{{ $message }}</div>
