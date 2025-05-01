@@ -1,11 +1,11 @@
 @extends('layouts.index')
 
 @section('main')
-    <div class="container" data-bs-theme="dark" style="color: #FFFFFF; padding: 30px 0">
-        <h1>Профиль</h1>
+    <div class="container d-flex" data-bs-theme="dark" style="color: #FFFFFF; padding: 30px 0">
         <div>
+            <h1>Профиль</h1>
             <img style="width: 400px; height: 400px; border-radius: 50%;"
-                 src="{{isset($user) && $user->image ? asset('storage/' . $user->image) : asset('storage/uploads/avatars/default/default.png') }}">
+                 src="{{isset($user) && $user->image ? asset('storage/' . $user->image) : asset('storage/uploads/avatars/default.jpg') }}">
 
             <form action="{{route('upload')}}" method="post" class="mb-3" enctype="multipart/form-data">
                 @csrf
@@ -17,12 +17,15 @@
                 <button type="submit" class="btn btn-danger">Удалить</button>
             </form>
         </div>
-        <h2>Привет, {{$user->name}}</h2>
-        <div style="display: flex; flex-direction: column; width: 15%; gap: 20px;">
-            <form action="{{route('logout')}}" method="post">
-                @csrf
-                <button type="submit" class="btn btn-danger">Выход</button>
-            </form>
+        <div>
+            <h2>Здравствуйте, {{$user->name}}</h2>
+            <h3>Ваша роль: {{$user->role}}</h3>
+            <div style="display: flex; flex-direction: column; width: 15%; gap: 20px;">
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Выход</button>
+                </form>
+            </div>
         </div>
     </div>
 
