@@ -19,7 +19,7 @@ class MasterFactory extends Factory
     {
         return [
             'user_id' => User::where('role', '=', 'пользователь')->inRandomOrder()->first()->id,
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'work_experience' => $this->faker->dateTime(),
             'image' => 'uploads/masters/default.png',
