@@ -78,7 +78,7 @@
 
 {{--        Конец тестовых--}}
         <div class="d-flex justify-content-center mt-4">
-            <a class="btn-success btn text-decoration-none" href="{{route('create')}}">
+            <a class="btn-danger btn text-decoration-none mb-5" href="{{route('create')}}">
                 <h1 class="text">Оставить заявку</h1>
             </a>
         </div>
