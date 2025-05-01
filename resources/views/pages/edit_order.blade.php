@@ -1,8 +1,8 @@
 @extends('layouts.index')
 @section('main')
 
-    <div class="container">
-        <h2>Редактирование заказа #{{ $order->id }}</h2>
+    <div class="container" data-bs-theme="dark">
+        <h2 class="pt-5" style="color: #fff">Редактирование заказа #{{ $order->id }}</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
