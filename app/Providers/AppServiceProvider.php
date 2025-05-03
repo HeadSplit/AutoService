@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use App\Observers\OrderObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        Order::observe(OrderObserver::class);
     }
 }
