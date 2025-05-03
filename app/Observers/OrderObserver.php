@@ -34,6 +34,19 @@ class OrderObserver
 
             $master->save();
         }
+
+        if ($order->isDirty('status') && $order->status === 'Завершён') {
+            $master = Master::find($order->master_id);
+            if (!$master) return;
+
+            if ($order->price !== null) {
+                $masterCommission = $order->price * 0.30;
+
+
+                $master->salary += $masterCommission;
+                $master->save();
+            }
+        }
     }
 
 
