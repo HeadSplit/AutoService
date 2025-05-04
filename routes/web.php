@@ -72,5 +72,6 @@ Route::middleware('auth')->group(function () {
         })->name('add.master');
         Route::post('/create_master', [UserController::class, 'createMaster'])->name('create.master');
         Route::post('/delete_master', [UserController::class, 'deleteMaster'])->name('delete.master');
+        Route::get('/my_tasks', [OrderController::class, 'myTasks']) -> name('master.tasks');
     });
 });

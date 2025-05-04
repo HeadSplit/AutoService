@@ -6,6 +6,7 @@ use App\Models\Master;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Request as ModelsRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Log;
@@ -57,10 +58,15 @@ class OrderController extends Controller
      */
     public function show()
     {
-       $orders = Order::all();
+        $orders = Order::with('master')->get();
 
-        return view('pages.orders', (['orders' => $orders, 'title' => 'Заказы']));
+        $orders->each(function ($order) {
+            $order['master_name'] = $order->master;
+        });
+
+        return view('pages.orders', ['orders' => $orders, 'title' => 'Заказы']);
     }
+
 
     public function showOrder(Request $request)
     {
@@ -154,14 +160,22 @@ class OrderController extends Controller
         }
     }
 
-
-
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         Order::find($id)->delete();
+    }
+
+    /**
+     * Personal task for masters
+     */
+    public function myTasks()
+    {
+        $title = 'Мои задачи';
+        $master = Master::where('user_id', Auth::user()->id)->first();
+        $orders = Order::where('master_id', $master->id)->orderByDesc('EndTime')->get();
+        return view('pages.my_tasks', compact('orders', 'title'));
     }
 }

@@ -44,6 +44,11 @@
                                 <a class="nav-link" href="{{route('add.master')}}">Добавить мастера</a>
                             </li>
                         @endif
+                        @if(\Illuminate\Support\Facades\Auth::user()->role == 'мастер')
+                            <li class="nav-item">
+                                <a href="{{route('master.tasks')}}" class="nav-link">Мои задачи</a>
+                            </li>
+                        @endif
                     @endauth
                     @guest()
                         <li class="nav-item">

@@ -27,7 +27,7 @@
                     </td>
                     <td>
                         <input type="text" name="master_name"
-                               value="{{ optional($order->master)->name ?? 'Не назначен' }}"
+                               value="{{ $order->master_name ?? 'Не назначен' }}"
                                class="form-control" readonly>
                     </td>
                     <td>
