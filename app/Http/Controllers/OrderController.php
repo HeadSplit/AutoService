@@ -176,6 +176,6 @@ class OrderController extends Controller
         $title = 'Мои задачи';
         $master = Master::where('user_id', Auth::user()->id)->first();
         $orders = Order::where('master_id', $master->id)->orderByDesc('EndTime')->get();
-        return view('pages.my_tasks', compact('orders', 'title'));
+        return view( 'pages.my_tasks', compact('orders', 'title', 'master'));
     }
 }

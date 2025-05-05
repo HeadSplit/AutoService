@@ -2,7 +2,8 @@
 
 @section('main')
     <h1 style="color: #FFFFFF; text-align: center; padding: 20px 0">Мои задачи</h1>
-
+    <h1 style="color: #FFFFFF; text-align: center; padding: 20px 0">Всего заказов:{{$master->count_of_orders}}</h1>
+    <h1 style="color: #FFFFFF; text-align: center; padding: 20px 0">Активных заказов:{{$master->active_orders}}</h1>
     <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 0 20px;">
         @foreach($orders as $order)
             <div style="background: #e44f12; color: #fff; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 0 10px rgba(234,2,2,0.5);">

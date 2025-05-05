@@ -36,7 +36,7 @@
             @if(count($orders) > 0)
             @foreach($orders as $order)
                 <div class="card" data-bs-theme="dark" style="width: 25rem;">
-                    <img src="{{ asset('storage/' . $order->image) }}" class="card-img-top" alt="Изображение заказа">
+                    <img src="{{ asset('storage/' . ($order->image ?? 'uploads/avatars/default.png')) }}" class="card-img-top" alt="Изображение заказа">
                     <div class="card-body">
                         <h5 class="card-title">{{$order->description}}</h5>
                         <p class="card-text">{{$order->mark . ' ' . $order->model}}</p>

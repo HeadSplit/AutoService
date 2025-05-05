@@ -56,10 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::get('create', [\App\Http\Controllers\UserController::class, 'createOrder'])-> name('create');
     Route::get('/order/{uuid}', [\App\Http\Controllers\OrderController::class, 'showOrder'])-> name('show-order');
     Route::get('/users/masters', [\App\Http\Controllers\UserController::class, 'allMasters']) -> name('masters');
+    Route::post('create_request', RequestController::class)->name('create.post');
     Route::middleware('role.accept')->group(function () {
         Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'show'])-> name('orders.index');
         Route::get('/requests', [AdminController::class, 'getRequests']) -> name('requests');
-        Route::post('create_request', RequestController::class)->name('create.post');
         Route::post('/create_order', [OrderController::class, 'action'])->name('order.accept');
         Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('order.edit');
         Route::put('/order/{id}/update', [OrderController::class, 'update'])->name('order.update');
