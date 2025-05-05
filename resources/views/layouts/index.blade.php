@@ -70,7 +70,7 @@
 </header>
 
 
-<main style="min-height: 89vh; background-color: #eaeaea;">
+<main style="min-height: 89vh; background-color: #000000;">
 @yield('main')
 </main>
 
