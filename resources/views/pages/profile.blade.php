@@ -6,7 +6,7 @@
             <div>
                 <h1>Профиль</h1>
                 <img style="width: 400px; height: 400px; border-radius: 50%;"
-                     src="{{isset($user) && $user->image ? asset('storage/' . $user->image) : asset('storage/uploads/avatars/default.jpg') }}">
+                     src="{{isset($user) && $user->image ? asset('storage/public' . $user->image) : 'https://avatars.mds.yandex.net/i?id=d6493f0f6e42938ed8678a1ffb2b2415_l-4821375-images-thumbs&n=13' }}">
 
                 <form action="{{route('upload')}}" method="post" class="mb-3" enctype="multipart/form-data">
                     @csrf
@@ -36,7 +36,7 @@
             @if(count($orders) > 0)
             @foreach($orders as $order)
                 <div class="card" data-bs-theme="dark" style="width: 25rem;">
-                    <img src="{{ asset('storage/68191ea48a367.jpg') }}" class="card-img-top" alt="Изображение заказа">
+                    <img src="{{ asset('storage/'. $order->image) }}" class="card-img-top" alt="Изображение заказа">
                     <div class="card-body">
                         <h5 class="card-title">{{$order->description}}</h5>
                         <p class="card-text">{{$order->mark . ' ' . $order->model}}</p>
