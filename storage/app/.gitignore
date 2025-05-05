@@ -1,6 +1,3 @@
 *
 !public/
-!public/uploads/
-!public/uploads/avatars
-!public/uploads/masters
 !.gitignore
