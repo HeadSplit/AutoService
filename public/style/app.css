@@ -96,5 +96,9 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
+.custom-table-bg td {
+    background: linear-gradient(135deg, #fff, #ff7f50, #e34f4f, #d32f2f);
+    color: #000;
+}
 
 
