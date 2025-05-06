@@ -17,8 +17,8 @@ class UserController extends Controller
     public function uploadImage(UploadImageRequest $request)
     {
         $data = $request->validated();
-        $file = $data['avatar'];
-      return $this->uploadImageService->uploadImage($file)
+        $url = $data['avatar'];
+      return $this->uploadImageService->uploadImage($url)
          ? back()->with('success', 'Аватар успешно обновлен')
          : back()->with('error', 'Ошибка, отправьте другой файл');
     }
@@ -45,23 +45,14 @@ class UserController extends Controller
         $user->role = 'мастер';
         $user->updated_at = now();
         $user->save();
-
-        $fileName = null;
-
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('uploads/masters', $fileName, 'public');
-        }
-
+        $image = $request->image;
         Master::create([
             'user_id' => $user->id,
             'name' => $request->name,
             'last_name' => $request->last_name,
             'work_experience' => $request->work_experience,
-            'image' => $fileName ? 'uploads/masters/' . $fileName : null,
+            'image' => $image?? null,
         ]);
-
         return redirect()->route('masters')->with('success', 'Мастер успешно добавлен!');
     }
 

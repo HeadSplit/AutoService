@@ -1,18 +1,16 @@
-@extends('layouts.index')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
     <h1 style="color: #FFFFFF; text-align: center; padding: 20px 0">Добавить мастера</h1>
 
-    <form action="{{ route('create.master') }}" method="POST" enctype="multipart/form-data" style="height: 77vh;" class="d-flex flex-column align-items-center gap-3">
-        @csrf
+    <form action="<?php echo e(route('create.master')); ?>" method="POST" enctype="multipart/form-data" style="height: 77vh;" class="d-flex flex-column align-items-center gap-3">
+        <?php echo csrf_field(); ?>
 
         <div class="form-group" style="width: 70%">
             <label for="user_id" class="text-white">Выберите пользователя</label>
             <select name="user_id" id="user_id" class="form-control" required>
                 <option value="" disabled selected>Выберите пользователя</option>
-                @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
+                <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
 
@@ -38,4 +36,6 @@
 
         <button type="submit" class="btn btn-primary">Добавить мастера</button>
     </form>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\headsplit\PhpstormProjects\AutoService\resources\views/admin/add_master.blade.php ENDPATH**/ ?>

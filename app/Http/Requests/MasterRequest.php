@@ -26,7 +26,7 @@ class MasterRequest extends FormRequest
             'last_name' => 'required|string',
             'user_id' => 'required|integer|exists:users,id',
             'work_experience' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'image' => 'required|url',
         ];
     }
 }

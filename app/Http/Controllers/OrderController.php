@@ -102,7 +102,7 @@ class OrderController extends Controller
                 'description' => 'nullable|string',
                 'status' => 'required|in:Формируется,Начат,В работе,Выполнен,Отменен',
                 'EndTime' => 'sometimes',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:8192',
+                'image' => 'nullable|url',
                 'remove_image' => 'nullable|boolean'
             ], [
                 'full_name_client.required' => 'Поле ФИО клиента обязательно для заполнения',
@@ -110,8 +110,6 @@ class OrderController extends Controller
                 'model.required' => 'Поле Модель обязательно для заполнения',
                 'state_number.required' => 'Поле Гос. номер обязательно для заполнения',
                 'region.required' => 'Поле Регион обязательно для заполнения',
-                'image.image' => 'Файл должен быть изображением',
-                'image.max' => 'Максимальный размер изображения 2MB',
             ]);
 
             if ($validator->fails()) {
@@ -124,19 +122,11 @@ class OrderController extends Controller
             $data = $validator->validated();
 
             if ($request->has('remove_image') && $order->image) {
-                Storage::delete('public/' . $order->image);
+                $order->image = null;
                 $data['image'] = null;
-            } elseif ($request->hasFile('image')) {
-                if ($order->image) {
-                    Storage::delete('public/' . $order->image);
-                }
-
-                $file = $request->file('image');
-                $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('uploads/orders', $fileName, 'public');
-
-                $data['image'] = 'uploads/orders/' . $fileName;
-                $order->image = $data['image'];
+            }
+            if ($request->has('image')) {
+                $order->image = $request->image;
             }
             if ($request->has('master_id')) {
                 $id = $request->master_id;
@@ -146,12 +136,11 @@ class OrderController extends Controller
                 $order->master_id = $master->id;
                 $order->save();
             }
+
             $order->update($data);
             $order->save();
-
             return redirect()->route('orders.index')
                 ->with('success', 'Заказ #' . $order->id . ' успешно обновлен!');
-
         } catch (\Exception $e) {
             Log::error('Ошибка при обновлении заказа: ' . $e->getMessage());
             return redirect()->back()

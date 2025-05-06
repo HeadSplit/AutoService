@@ -28,9 +28,7 @@ Route::get('/about', function () {
     return view('pages.about', ['title' => 'О нас']);
 }) -> name('about');
 
-Route::get('/masters', function () {
-    return view('pages.masters', ['title' => 'Мастера']);
-}) -> name('masters');
+Route::get('/users/masters', [\App\Http\Controllers\UserController::class, 'allMasters']) -> name('masters');
 
 Route::get('/register', function () {
     return view('pages.register', ['title' => 'Регистрация']);
@@ -55,7 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/delete', [UserController::class, 'deleteImage'])->name('deleteImage');
     Route::get('create', [\App\Http\Controllers\UserController::class, 'createOrder'])-> name('create');
     Route::get('/order/{uuid}', [\App\Http\Controllers\OrderController::class, 'showOrder'])-> name('show-order');
-    Route::get('/users/masters', [\App\Http\Controllers\UserController::class, 'allMasters']) -> name('masters');
     Route::post('create_request', RequestController::class)->name('create.post');
     Route::middleware('role.accept')->group(function () {
         Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'show'])-> name('orders.index');
@@ -68,7 +65,9 @@ Route::middleware('auth')->group(function () {
             return view('admin.masters', ['title' => 'Мастера', 'masters' => \App\Models\Master::all()]);
         })->name('admin.masters');
         Route::get('/create_master', function() {
-           return view('admin.add_master', ['title' => 'Добавить мастера', 'users' => \App\Models\User::all(), 'masters' => \App\Models\Master::all()]);
+           return view('admin.add_master', ['title' => 'Добавить мастера',
+               'users' => \App\Models\User::where('role', 'пользователь')->get(),
+               'masters' => \App\Models\Master::all()]);
         })->name('add.master');
         Route::post('/create_master', [UserController::class, 'createMaster'])->name('create.master');
         Route::post('/delete_master', [UserController::class, 'deleteMaster'])->name('delete.master');

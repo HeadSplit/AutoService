@@ -140,13 +140,13 @@
                 <tr>
                     <td>Изображение</td>
                     <td>
-                        <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
+                        <input type="url" name="image" class="form-control @error('image') is-invalid @enderror">
                         @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                         @if($order->image)
                             <div class="mt-2">
-                                <img src="{{ asset('storage/' . $order->image) }}" width="100" class="img-thumbnail">
+                                <img src="{{ $order->image }}" width="100" class="img-thumbnail">
                                 <div class="form-check mt-2">
                                     <input type="checkbox" name="remove_image" id="remove_image" class="form-check-input">
                                     <label for="remove_image" class="form-check-label">Удалить текущее изображение</label>
