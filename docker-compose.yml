@@ -3,7 +3,7 @@ services:
         build:
             context: .
             dockerfile: docker/php/Dockerfile
-        container_name: laravel_auto
+        container_name: laravel
         volumes:
             -   .:/var/www
         depends_on:
