@@ -17,7 +17,7 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: nginx_auto
+        container_name: nginx
         ports:
             - "80:80"
         volumes:
@@ -30,7 +30,7 @@ services:
             - laravel
     postgres:
         image: postgres:14
-        container_name: postgres_auto
+        container_name: postgres
         restart: always
         environment:
             POSTGRES_DB: autoservice
@@ -44,7 +44,7 @@ services:
             - laravel
     pgadmin:
         image: dpage/pgadmin4
-        container_name: pgadmin_auto
+        container_name: pgadmin
         restart: always
         environment:
             PGADMIN_DEFAULT_EMAIL: admin@mail.ru
@@ -57,7 +57,7 @@ services:
             - laravel
     redis:
         image: redis:alpine
-        container_name: redis_auto
+        container_name: redis
         ports:
             -   "6379:6379"
         networks:
