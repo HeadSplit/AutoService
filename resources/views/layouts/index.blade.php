@@ -14,7 +14,7 @@
 <header>
     <nav class="navbar navbar-expand-md bg-danger border-bottom border-body sticky-custom" data-bs-theme="dark" style="z-index: 1030; position: sticky; top: 0;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{route('home')}}">СТО "100"</a>
+            <a class="navbar-brand" href="{{route('home')}}">СТО "Восточный"</a>
             <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -75,7 +75,7 @@
 </main>
 
 <footer class="bg-danger">
-    <p>&copy; {{ date('Y') }} СТО "100. All rights reserved.</p>
+    <p>&copy; {{ date('Y') }} СТО "Восточный". All rights reserved.</p>
 </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
