@@ -32,7 +32,7 @@ services:
         container_name: postgres_auto
         restart: always
         environment:
-            POSTGRES_DB: rzd-system
+            POSTGRES_DB: autoservice
             POSTGRES_USER: admin
             POSTGRES_PASSWORD: admin
         ports:
