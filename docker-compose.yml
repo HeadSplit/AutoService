@@ -3,7 +3,7 @@ services:
         build:
             context: .
             dockerfile: docker/php/Dockerfile
-        container_name: laravel
+        container_name: laravel_auto
         volumes:
             -   .:/var/www
         depends_on:
@@ -17,7 +17,7 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: nginx
+        container_name: nginx_auto
         ports:
             - "80:80"
         volumes:
@@ -29,7 +29,7 @@ services:
             - laravel
     postgres:
         image: postgres:14
-        container_name: postgres
+        container_name: postgres_auto
         restart: always
         environment:
             POSTGRES_DB: rzd-system
@@ -43,7 +43,7 @@ services:
             - laravel
     pgadmin:
         image: dpage/pgadmin4
-        container_name: pgadmin
+        container_name: pgadmin_auto
         restart: always
         environment:
             PGADMIN_DEFAULT_EMAIL: admin@mail.ru
@@ -56,7 +56,7 @@ services:
             - laravel
     redis:
         image: redis:alpine
-        container_name: redis
+        container_name: redis_auto
         ports:
             -   "6379:6379"
         networks:
