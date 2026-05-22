@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Данные заказа #{{ $order->id }}</h2>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered custom-table-bg">
             <tbody>
             <tr>
                 <td>Мастер</td>
