@@ -22,7 +22,7 @@ class MasterFactory extends Factory
             'name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'work_experience' => $this->faker->dateTime(),
-            'image' => 'uploads/masters/default.png',
+            'image' => 'https://avatars.mds.yandex.net/i?id=d6493f0f6e42938ed8678a1ffb2b2415_l-4821375-images-thumbs&n=13',
         ];
     }
 }

@@ -10,7 +10,7 @@
                         $diff = $now->diff($workExperience);
                     @endphp
                     <div class="card" data-bs-theme="dark" style="width: 25rem;">
-                        <img src="{{ asset('storage/' . ($master->image ?? 'uploads/masters/default.png')) }}" class="card-img-top" alt="...">
+                        <img src="{{  $master->image ?? 'https://avatars.mds.yandex.net/i?id=d6493f0f6e42938ed8678a1ffb2b2415_l-4821375-images-thumbs&n=13' }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{$master->name}} {{$master->last_name}}</h5>
                             <p class="card-text">
