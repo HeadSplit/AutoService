@@ -16,11 +16,11 @@ class UserController extends Controller
     public function __construct(protected UploadImageService $uploadImageService) {}
     public function uploadImage(UploadImageRequest $request)
     {
-        $data = $request->validated();
-        $url = $data['avatar'];
-      return $this->uploadImageService->uploadImage($url)
-         ? back()->with('success', 'Аватар успешно обновлен')
-         : back()->with('error', 'Ошибка, отправьте другой файл');
+        return $this->uploadImageService->uploadImage(
+            $request->file('avatar')
+        )
+            ? back()->with('success', 'Аватар успешно обновлен')
+            : back()->with('error', 'Ошибка при загрузке изображения');
     }
 
     public function deleteImage()

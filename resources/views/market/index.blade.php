@@ -1,0 +1,249 @@
+@extends('layouts.market.index')
+
+@section('main')
+
+    <section class="relative min-h-screen overflow-hidden bg-[#080808]">
+
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-black/80"></div>
+
+            <img
+                src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2070"
+                alt=""
+                class="w-full h-full object-cover blur-sm opacity-20">
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 pt-40 pb-32">
+
+            <div class="max-w-4xl">
+
+                <div class="w-32 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-8"></div>
+
+                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
+                    Оригинальные и качественные
+                    <span class="text-amber-400">
+                    автозапчасти
+                </span>
+                    для любых автомобилей
+                </h1>
+
+                <p class="mt-8 text-lg md:text-xl text-gray-400 max-w-2xl">
+                    Масла, фильтры, тормозные системы, аккумуляторы
+                    и тысячи других товаров от проверенных производителей
+                    с быстрой доставкой по всей стране.
+                </p>
+
+                <div class="mt-10 flex flex-wrap gap-4">
+
+                    <a href="#catalog"
+                       class="px-8 py-4 rounded-full bg-amber-500 text-black font-medium transition hover:scale-105">
+                        Перейти в каталог
+                    </a>
+
+                    <a href="#categories"
+                       class="px-8 py-4 rounded-full border border-white/15 text-white hover:border-white/40 transition">
+                        Подобрать запчасть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bg-[#0c0c0c] py-24">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="text-center mb-16">
+
+                <div class="mx-auto w-24 h-px bg-amber-500 mb-6"></div>
+
+                <h2 class="text-4xl font-bold text-white">
+                    Почему выбирают нас
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:border-amber-500/50 transition">
+                    <div class="text-4xl mb-5">📦</div>
+                    <h3 class="text-xl text-white font-semibold mb-3">
+                        Оригинальные запчасти
+                    </h3>
+                    <p class="text-gray-400">
+                        Только проверенные поставщики и официальные бренды.
+                    </p>
+                </div>
+
+                <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:border-amber-500/50 transition">
+                    <div class="text-4xl mb-5">🚚</div>
+                    <h3 class="text-xl text-white font-semibold mb-3">
+                        Быстрая доставка
+                    </h3>
+                    <p class="text-gray-400">
+                        Отправка заказов в кратчайшие сроки.
+                    </p>
+                </div>
+
+                <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:border-amber-500/50 transition">
+                    <div class="text-4xl mb-5">🛡️</div>
+                    <h3 class="text-xl text-white font-semibold mb-3">
+                        Гарантия качества
+                    </h3>
+                    <p class="text-gray-400">
+                        Все товары проходят проверку перед отправкой.
+                    </p>
+                </div>
+
+                <div class="bg-white/[0.03] border border-white/10 rounded-3xl p-8 hover:border-amber-500/50 transition">
+                    <div class="text-4xl mb-5">🎧</div>
+                    <h3 class="text-xl text-white font-semibold mb-3">
+                        Помощь специалистов
+                    </h3>
+                    <p class="text-gray-400">
+                        Подскажем совместимость и подберём нужную деталь.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="categories" class="bg-[#080808] py-24">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-4xl font-bold text-white">
+                    Популярные категории
+                </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="group bg-[#111] rounded-3xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?q=80&w=1200"
+                         class="h-56 w-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-6">
+                        <h3 class="text-xl text-white font-semibold">
+                            Масла и жидкости
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="group bg-[#111] rounded-3xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1635774855536-972b9d1f90f3?q=80&w=1200"
+                         class="h-56 w-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-6">
+                        <h3 class="text-xl text-white font-semibold">
+                            Фильтры
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="group bg-[#111] rounded-3xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200"
+                         class="h-56 w-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-6">
+                        <h3 class="text-xl text-white font-semibold">
+                            Тормозная система
+                        </h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section id="catalog" class="bg-[#0c0c0c] py-24">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-16">
+
+                <div class="w-24 h-px bg-amber-500 mb-6"></div>
+
+                <h2 class="text-4xl font-bold text-white">
+                    Популярные товары
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                @for($i = 0; $i < 4; $i++)
+
+                    <div class="bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-amber-500/40 transition">
+
+                        <img src="https://placehold.co/600x400/111111/ffffff?text=Product"
+                             class="w-full h-52 object-cover">
+
+                        <div class="p-6">
+
+                        <span class="text-sm text-gray-500">
+                            Bosch
+                        </span>
+
+                            <h3 class="text-white font-semibold mt-2">
+                                Масляный фильтр
+                            </h3>
+
+                            <div class="mt-4 flex items-center justify-between">
+
+                            <span class="text-2xl text-amber-400 font-bold">
+                                1 990 ₽
+                            </span>
+
+                                <button class="px-4 py-2 rounded-xl bg-amber-500 text-black font-medium">
+                                    В корзину
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                @endfor
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="bg-[#080808] py-24 border-t border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6 text-center">
+
+            <h2 class="text-4xl font-bold text-white mb-12">
+                Популярные бренды
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-10 text-gray-500 text-2xl font-semibold">
+
+                <div>BOSCH</div>
+                <div>MANN</div>
+                <div>NGK</div>
+                <div>FEBI</div>
+                <div>MAHLE</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+@endsection

@@ -13,7 +13,7 @@ class UploadImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar' => 'required|url',
+            'avatar' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ];
     }
 }

@@ -6,76 +6,137 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$title}}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{asset('style/app.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-md bg-danger border-bottom border-body sticky-custom" data-bs-theme="dark" style="z-index: 1030; position: sticky; top: 0;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{route('home')}}">СТО "Восточный"</a>
-            <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('home')}}">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('about')}}">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('masters')}}">Наши мастера</a>
-                    </li>
-                    @auth()
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('lk')}}">Личный кабинет</a>
-                        </li>
-                        @if(\Illuminate\Support\Facades\Auth::user()->role == 'админ')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('requests')}}">Админ панель</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('admin.masters')}}">Мастера</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('add.master')}}">Добавить мастера</a>
-                            </li>
+<header class="fixed top-0 left-0 right-0 z-50">
+
+    <nav class="border-b border-white/10 bg-black/50 glass">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="h-20 flex items-center justify-between">
+
+                {{-- LOGO --}}
+                <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0">
+
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
+                        <span class="font-bold text-black">В</span>
+                    </div>
+
+                    <div>
+                        <div class="font-semibold text-lg">СТО Восточный</div>
+                        <div class="text-xs text-gray-500">Автосервис</div>
+                    </div>
+
+                </a>
+
+                {{-- DESKTOP MENU --}}
+                <div class="hidden lg:flex items-center gap-5 text-sm">
+
+                    <a href="{{ route('home') }}" class="text-gray-300 hover:text-white">Главная</a>
+                    <a href="{{ route('about') }}" class="text-gray-300 hover:text-white">О нас</a>
+                    <a href="{{ route('masters') }}" class="text-gray-300 hover:text-white">Наши мастера</a>
+
+                    @auth
+                        <a href="{{ route('market.index') }}" class="text-gray-300 hover:text-white">Магазин</a>
+                        <a href="{{ route('lk') }}" class="text-gray-300 hover:text-white">Личный кабинет</a>
+
+                        @if(Auth::user()->role == 'админ')
+                            <a href="{{ route('requests') }}" class="text-gray-300 hover:text-white">Админ</a>
+                            <a href="{{ route('admin.masters') }}" class="text-gray-300 hover:text-white">Мастера</a>
+                            <a href="{{ route('add.master') }}" class="text-gray-300 hover:text-white">Добавить</a>
                         @endif
-                        @if(\Illuminate\Support\Facades\Auth::user()->role == 'мастер')
-                            <li class="nav-item">
-                                <a href="{{route('master.tasks')}}" class="nav-link">Мои задачи</a>
-                            </li>
+
+                        @if(Auth::user()->role == 'мастер')
+                            <a href="{{ route('master.tasks') }}" class="text-gray-300 hover:text-white">Задачи</a>
                         @endif
                     @endauth
-                    @guest()
-                        <li class="nav-item">
-                            <a class="nav-link  " href="{{ route('register') }}">Регистрация</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link  " href="{{ route('login') }}">Вход</a>
-                        </li>
-                    @endguest
+
                     @if(Auth::check() && (Auth::user()->role == 'админ' || Auth::user()->role == 'мастер'))
-                        <li class="nav-item">
-                            <a class="nav-link  " href="{{ route('orders.index') }}">Заказы</a>
-                        </li>
+                        <a href="{{ route('orders.index') }}" class="text-gray-300 hover:text-white">Заказы</a>
                     @endif
-                </ul>
+
+                </div>
+
+                {{-- RIGHT --}}
+                <div class="hidden lg:flex items-center gap-3">
+
+                    @guest
+                        <a href="{{ route('login') }}" class="text-gray-300 hover:text-white">
+                            Вход
+                        </a>
+
+                        <a href="{{ route('register') }}"
+                           class="px-4 py-2 bg-amber-500 text-black rounded-xl">
+                            Регистрация
+                        </a>
+                    @endguest
+
+                    @auth
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="px-4 py-2 border border-white/20 rounded-xl hover:border-white/50">
+                                Выйти
+                            </button>
+                        </form>
+                    @endauth
+
+                </div>
+
+                {{-- MOBILE BUTTON --}}
+                <button id="menuBtn" class="lg:hidden text-2xl">
+                    ☰
+                </button>
+
             </div>
         </div>
+
     </nav>
+
+    {{-- MOBILE MENU --}}
+    <div id="mobileMenu" class="hidden lg:hidden bg-[#111] border-b border-white/10">
+
+        <div class="px-6 py-6 flex flex-col gap-4">
+
+            <a href="{{ route('home') }}">Главная</a>
+            <a href="{{ route('about') }}">О нас</a>
+            <a href="{{ route('masters') }}">Наши мастера</a>
+
+            @auth
+                <a href="{{ route('market.index') }}">Магазин</a>
+                <a href="{{ route('lk') }}">Личный кабинет</a>
+            @endauth
+
+            @guest
+                <a href="{{ route('login') }}">Вход</a>
+                <a href="{{ route('register') }}">Регистрация</a>
+            @endguest
+
+        </div>
+
+    </div>
+
 </header>
 
 
-<main style="min-height: 89vh; background-color: #000000;">
-@yield('main')
+<main class="flex-grow pt-20 bg-[#080808]">
+    @yield('main')
 </main>
 
-<footer class="bg-danger">
-    <p>&copy; {{ date('Y') }} СТО "Восточный". All rights reserved.</p>
+<footer class="border-t border-white/10 bg-[#060606]">
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+
+        <p class="text-center text-gray-500">
+            © {{ date('Y') }} СТО "Восточный". Все права защищены.
+        </p>
+
+    </div>
+
 </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

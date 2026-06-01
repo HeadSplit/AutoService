@@ -2,32 +2,50 @@
 
 namespace App\Services;
 
-use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class UploadImageService
 {
-    public function uploadImage($url): bool
+    public function uploadImage(UploadedFile $file): bool
     {
         $user = Auth::user();
-        $user->image = $url;
 
-        $user->save();
-
-        return true;
-    }
-
-    public function deleteUserImage(User $user): bool
-    {
-        if (!$user->image) {
-            Log::warning("Попытка удалить аватар, которого нет у пользователя ID: {$user->id}");
+        if (!$user) {
             return false;
         }
 
-            $user->image = null;
-            $user->save();
-        return false;
+        if ($user->image) {
+
+            $oldPath = str_replace('/storage/', '', $user->image);
+
+            if (Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+        }
+
+        $path = $file->store('avatars', 'public');
+
+        $user->image = '/storage/' . $path;
+
+        return $user->save();
+    }
+
+    public function deleteUserImage($user): bool
+    {
+        if (!$user->image) {
+            return false;
+        }
+
+        $path = str_replace('/storage/', '', $user->image);
+
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+        }
+
+        $user->image = null;
+
+        return $user->save();
     }
 }

@@ -2,54 +2,163 @@
 
 @section('main')
 
-        <div class="container d-flex" data-bs-theme="dark" style="color: #FFFFFF; padding: 30px 0">
-            <div>
-                <h1>Профиль</h1>
-                <img style="width: 400px; height: 400px; border-radius: 50%;"
-                     src="{{isset($user) && $user->image ? $user->image : 'https://avatars.mds.yandex.net/i?id=d6493f0f6e42938ed8678a1ffb2b2415_l-4821375-images-thumbs&n=13' }}">
+    <div class="max-w-7xl mx-auto px-6 py-12">
 
-                <form action="{{route('upload')}}" method="post" class="mb-3" enctype="multipart/form-data">
-                    @csrf
-                    <label for="avatar">Введите ссылку на аватар</label>
-                    <input class="form-control" type="url" id="avatar" name="avatar">
-                    <button type="submit" class="btn btn-success">Загрузить</button>
-                </form>
-                <form action="{{route('deleteImage')}}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Удалить</button>
-                </form>
-            </div>
-            <div>
-                <h2>Здравствуйте, {{$user->name}}</h2>
-                <h3>Ваша роль: {{$user->role}}</h3>
-                <div style="display: flex; flex-direction: column; width: 15%; gap: 20px;">
-                    <form action="{{route('logout')}}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">Выход</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <div class="grid lg:grid-cols-3 gap-8">
 
+            {{-- Профиль --}}
+            <div class="lg:col-span-1">
 
-        <div class="container" data-bs-theme="dark" style="color: #FFFFFF; padding: 30px 0">
-            <h1>Ваши заказы</h1>
-            @if(count($orders) > 0)
-            @foreach($orders as $order)
-                <div class="card" data-bs-theme="dark" style="width: 25rem;">
-                    <img src="{{ ( $order->image) }}" class="card-img-top" alt="Изображение заказа">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$order->description}}</h5>
-                        <p class="card-text">{{$order->mark . ' ' . $order->model}}</p>
-                        <a href="{{ route('show-order', [$order->uuid]) }}" class="btn btn-primary">Уточнить статус</a>
+                <div class="bg-[#111] border border-white/10 rounded-3xl p-8">
+
+                    <div class="flex flex-col items-center">
+
+                        <img
+                            src="{{ $user->image ?? asset('images/default-avatar.png') }}"
+                            alt="avatar"
+                            class="w-52 h-52 rounded-full object-cover border-4 border-amber-500/30">
+
+                        <h2 class="mt-6 text-2xl font-semibold">
+                            {{ auth()->user()->name }}
+                        </h2>
+
+                        <p class="text-gray-500 mt-2">
+                            {{ auth()->user()->email }}
+                        </p>
+
                     </div>
+
+                    <form
+                        action="{{ route('upload') }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        class="mt-8">
+
+                        @csrf
+
+                        <label class="block text-sm text-gray-400 mb-3">
+                            Новая фотография
+                        </label>
+
+                        <input
+                            type="file"
+                            name="avatar"
+                            accept="image/*"
+                            class="block w-full text-sm text-gray-400
+                        file:mr-4
+                        file:py-3
+                        file:px-4
+                        file:rounded-xl
+                        file:border-0
+                        file:bg-amber-500
+                        file:text-black
+                        file:font-medium">
+
+                        <button
+                            type="submit"
+                            class="w-full mt-4 py-3 rounded-xl bg-amber-500 text-black font-semibold hover:scale-[1.02] transition">
+
+                            Загрузить фото
+
+                        </button>
+
+                    </form>
+
+                    <form
+                        action="{{ route('deleteImage') }}"
+                        method="POST"
+                        class="mt-3">
+
+                        @csrf
+
+                        <button
+                            type="submit"
+                            class="w-full py-3 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 transition">
+
+                            Удалить фото
+
+                        </button>
+
+                    </form>
+
                 </div>
-            @endforeach
+
+            </div>
+
+            {{-- Заказы --}}
+            <div class="lg:col-span-2">
+
+                <div class="flex items-center justify-between mb-8">
+
+                    <h1 class="text-3xl font-bold">
+                        Мои заказы
+                    </h1>
+
+                    <span class="text-gray-500">
+                    {{ count($orders) }} заказов
+                </span>
+
+                </div>
+
+                @if(count($orders))
+
+                    <div class="grid md:grid-cols-2 gap-6">
+
+                        @foreach($orders as $order)
+
+                            <div class="bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-amber-500/30 transition">
+
+                                <img
+                                    src="{{ $order->image }}"
+                                    alt=""
+                                    class="w-full h-52 object-cover">
+
+                                <div class="p-6">
+
+                                    <h3 class="text-xl font-semibold mb-3">
+                                        {{ $order->mark }} {{ $order->model }}
+                                    </h3>
+
+                                    <p class="text-gray-500 mb-6">
+                                        {{ $order->description }}
+                                    </p>
+
+                                    <a
+                                        href="{{ route('show-order', [$order->uuid]) }}"
+                                        class="inline-flex items-center px-5 py-3 bg-amber-500 text-black rounded-xl font-medium">
+
+                                        Подробнее
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
+                    </div>
+
                 @else
-                <div class="container" align="center">
-                <h3>Вы ещё не сделали ни одного заказа</h3>
-                </div>
-            @endif
+
+                    <div class="bg-[#111] border border-white/10 rounded-3xl p-12 text-center">
+
+                        <h2 class="text-2xl font-semibold mb-3">
+                            Заказов пока нет
+                        </h2>
+
+                        <p class="text-gray-500">
+                            Вы ещё не оставили ни одной заявки на обслуживание или ваша заявка
+                        </p>
+
+                    </div>
+
+                @endif
+
+            </div>
+
         </div>
+
+    </div>
 
 @endsection
