@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\market;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -25,17 +27,27 @@ class ProductController extends Controller
      */
     public function create(): \Illuminate\View\View
     {
-        return view('market.admin.product.create');
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('market.admin.product.create', compact('categories', 'brands'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $data = $request->all();
 
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $data['image'] = $path;
+        };
+
         $product = Product::create($data);
+
+        return redirect()->route('market.admin.products');
     }
 
     /**
@@ -55,7 +67,13 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        $product->load('brand', 'category');
+
+        return view('market.admin.product.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -63,7 +81,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $data['image'] = $path;
+        };
+
+        $product->update($data);
+
+        return redirect()->route('market.admin.products');
     }
 
     /**
@@ -71,6 +100,27 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::destroy($id);
+
+        return redirect()->route('market.admin.products');
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->get('q');
+
+        $products = Product::query()
+            ->when($q, function ($query) use ($q) {
+                $query->where(function ($sub) use ($q) {
+                    $sub->where('name', 'like', "%{$q}%")
+                        ->orWhere('slug', 'like', "%{$q}%")
+                        ->orWhere('article', 'like', "%{$q}%")
+                        ->orWhere('description', 'like', "%{$q}%");
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('market._cards', compact('products'));
     }
 }

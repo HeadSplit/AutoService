@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Authorize\AuthController;
+use App\Http\Controllers\Market\CartController;
+use App\Http\Controllers\market\CustomController;
 use App\Http\Controllers\Market\PageController;
 use App\Http\Controllers\Market\AdminController as MarketController;
 use App\Http\Controllers\market\CategoryController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use App\Models\Order;
+use App\Models\Custom;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,12 +53,44 @@ Route::middleware('auth')->group(function () {
         return view('pages.profile', [
             'title' => 'Личный кабинет',
             'user' => Auth::user(),
-            'orders' => Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get()
+            'orders' => Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
+            'marketOrders' => Custom::with('items.product')
+                ->where('user_id', auth()->id())
+                ->latest()
+                ->get()
         ]);
     }) -> name('lk');
     Route::prefix('/market')->group(function () {
         Route::get('/', [PageController::class, 'index'])->name('market.index');
+        Route::get('/catalog/search', [ProductController::class, 'search'])
+            ->name('market.catalog.search');
         Route::get('/catalog', [PageController::class, 'catalog'])->name('market.catalog');
+        Route::get('/catalog/{product}', [PageController::class, 'show'])->name('market.catalog.product');
+        Route::get('/brand/{slug}', [PageController::class, 'showBrand'])->name('brand.show');
+        Route::get('/category/{slug}', [PageController::class, 'showCategory'])->name('category.show');
+
+        Route::get('/allBrands', [PageController::class, 'showBrands'])->name('market.brands');
+        Route::get('/allCategories', [PageController::class, 'showCategories'])->name('market.categories');
+
+        Route::prefix('cart')->group(function () {
+
+            Route::get('/', [CartController::class, 'index'])->name('cart.index');
+
+            Route::post('/add/{id}', [CartController::class, 'add'])->name('cart.add');
+
+            Route::post('/update/{id}', [CartController::class, 'update'])->name('cart.update');
+
+            Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+            Route::delete('/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+        });
+
+
+        Route::post('/cart/create', [CustomController::class, 'store'])->name('cart.store');
+        Route::get('/custom/{id}', [CustomController::class, 'show'])->name('custom.show');
+
+
 
         Route::middleware('can:admin')->group(function () {
             Route::get('/admin', [MarketController::class, 'index'])->name('market.admin');
@@ -65,27 +100,35 @@ Route::middleware('auth')->group(function () {
             Route::get('/products', [ProductController::class, 'index'])->name('market.admin.products');
             Route::get('/product/{product}', [ProductController::class, 'show'])->name('market.admin.product');
             Route::get('/products/create', [ProductController::class, 'create'])->name('market.admin.products.create');
+            Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('market.admin.products.edit');
             Route::post('/products', [ProductController::class, 'store'])->name('market.admin.products.store');
-            Route::put('/products/{product}', [ProductController::class, 'update'])->name('market.admin.products.update');
-            Route::delete('/products', [ProductController::class, 'destroy'])->name('market.admin.products.destroy');
+            Route::put('/products/{id}', [ProductController::class, 'update'])->name('market.admin.products.update');
+            Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('market.admin.products.destroy');
 
 
 
             Route::get('/brands',[BrandController::class,'index'])->name('market.admin.brands');
             Route::get('/brand/{brand}',[BrandController::class,'show'])->name('market.admin.brand.show');
             Route::get('/brands/create',[BrandController::class,'create'])->name('market.admin.brands.create');
+            Route::get('/brands/edit/{id}',[BrandController::class,'edit'])->name('market.admin.brands.edit');
             Route::post('/brands', [BrandController::class, 'store'])->name('market.admin.brands.store');
             Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('market.admin.brands.update');
-            Route::delete('/brands', [BrandController::class, 'destroy'])->name('market.admin.brands.destroy');
+            Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->name('market.admin.brands.destroy');
 
 
 
             Route::get('/categories', [CategoryController::class, 'index'])->name('market.admin.categories');
-            Route::get('/category/{category}',[CategoryController::class,'show'])->name('market.admin.category');
+            Route::get('/category/{category}',[CategoryController::class,'show'])->name('market.admin.category.show');
+            Route::get('/category/{category}/edit',[CategoryController::class,'edit'])->name('market.admin.categories.edit');
             Route::get('/categories/create',[CategoryController::class,'create'])->name('market.admin.categories.create');
             Route::post('/categories', [CategoryController::class, 'store'])->name('market.admin.categories.store');
             Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('market.admin.categories.update');
-            Route::delete('/categories', [CategoryController::class, 'destroy'])->name('market.admin.categories.destroy');
+            Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('market.admin.categories.destroy');
+
+
+
+            Route::get('/custom/edit/{custom}', [CustomController::class, 'edit'])->name('market.admin.custom.edit');
+            Route::put('/custom/{custom}', [CustomController::class, 'update'])->name('market.admin.custom.update');
         });
     });
 

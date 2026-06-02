@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
+        return view('market.admin.category.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('market.catalog');
+        return redirect()->route('market.admin.categories');
     }
 
     /**
@@ -54,7 +54,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('market.admin.category.edit', compact('category'));
     }
 
     /**
@@ -62,7 +64,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $category = Category::find($id);
+
+        $category->update($data);
+
+        return redirect()->route('market.admin.categories');
     }
 
     /**
@@ -70,6 +78,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
+
+        return redirect()->route('market.admin.categories');
     }
 }

@@ -53,7 +53,9 @@ class BrandController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $brand = Brand::find($id);
+
+        return view('market.admin.brand.edit', compact('brand'));
     }
 
     /**
@@ -61,7 +63,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $brand = Brand::find($id);
+
+        $data = $request->all();
+
+        $brand->update($data);
+
+        return redirect()->route('market.admin.brands');
     }
 
     /**
@@ -69,6 +77,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Brand::destroy($id);
+
+        return redirect()->route('market.admin.brands');
     }
 }

@@ -1,0 +1,135 @@
+@extends('layouts.market.index')
+
+@section('title', $brand->name)
+
+@section('main')
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+
+        {{-- BRAND HEADER --}}
+        <div class="mb-12">
+
+            <div class="inline-flex px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-4">
+                Бренд
+            </div>
+
+            <h1 class="text-5xl font-extrabold text-white">
+                {{ $brand->name }}
+            </h1>
+
+            <p class="text-gray-400 text-lg mt-3">
+                Страна: {{ $brand->country }}
+            </p>
+
+            <div class="mt-4 text-gray-300">
+                Товаров бренда: {{ $brand->products->count() }}
+            </div>
+
+        </div>
+
+        {{-- PRODUCTS --}}
+        <div class="mb-8">
+
+            <h2 class="text-3xl font-bold text-white">
+                Товары бренда
+            </h2>
+
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            @forelse($brand->products as $product)
+
+                <div class="bg-white/10 border border-white/10 rounded-3xl overflow-hidden hover:border-amber-500 transition flex flex-col">
+
+                    {{-- IMAGE --}}
+                    <a href="{{ route('market.catalog.product', $product->slug) }}">
+
+                        <div class="h-56 bg-white p-4 flex items-center justify-center">
+
+                            @if($product->image)
+
+                                <img src="{{ asset('storage/' . $product->image) }}"
+                                     class="max-w-full max-h-full object-contain"
+                                     alt="{{ $product->name }}">
+
+                            @else
+
+                                <div class="text-gray-500">
+                                    Нет изображения
+                                </div>
+
+                            @endif
+
+                        </div>
+
+                    </a>
+
+                    {{-- BODY --}}
+                    <div class="p-5 flex flex-col flex-grow">
+
+                        <h3 class="text-lg font-bold text-white min-h-[56px]">
+                            {{ $product->name }}
+                        </h3>
+
+                        <div class="mt-3">
+
+                            @if($product->category)
+                                <span class="px-3 py-1 rounded-full bg-white/10 text-gray-200 text-xs">
+                                {{ $product->category->name }}
+                            </span>
+                            @endif
+
+                        </div>
+
+                        <div class="mt-4 text-sm text-gray-300">
+                            Артикул:
+                            <span class="text-white font-semibold">
+                            {{ $product->article }}
+                        </span>
+                        </div>
+
+                        <div class="mt-4 text-3xl font-extrabold text-amber-400">
+                            {{ number_format($product->price, 0, ',', ' ') }} ₽
+                        </div>
+
+                        <div class="mt-auto pt-5">
+
+                            <a href="{{ route('market.catalog.product', $product->slug) }}"
+                               class="block text-center py-3 rounded-xl bg-amber-500 text-black font-semibold hover:scale-[1.02] transition">
+
+                                Подробнее
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            @empty
+
+                <div class="col-span-full">
+
+                    <div class="bg-white/10 border border-white/10 rounded-3xl p-12 text-center">
+
+                        <h3 class="text-2xl text-white mb-3">
+                            Товаров пока нет
+                        </h3>
+
+                        <p class="text-gray-400">
+                            Для данного бренда товары ещё не добавлены.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            @endforelse
+
+        </div>
+
+    </section>
+
+@endsection

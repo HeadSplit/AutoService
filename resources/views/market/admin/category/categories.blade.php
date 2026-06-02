@@ -76,7 +76,7 @@
                         {{-- ACTIONS --}}
                         <div class="flex flex-wrap gap-3">
 
-                            <a href="{{ route('market.admin.categories.show', $category->id) }}"
+                            <a href="{{ route('category.show', $category->slug) }}"
                                class="px-4 py-2 rounded-xl border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition">
 
                                 Просмотреть

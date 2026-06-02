@@ -76,14 +76,14 @@
                         {{-- ACTIONS --}}
                         <div class="flex flex-wrap gap-3">
 
-                            <a href="{{ route('market.admin.brand.show', $brand->id) }}"
+                            <a href="{{route('brand.show', $brand->slug)}}"
                                class="px-4 py-2 rounded-xl border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition">
 
                                 Просмотреть
 
                             </a>
 
-                            <a href="{{ route('market.admin.brands.update', $brand->id) }}"
+                            <a href="{{ route('market.admin.brands.edit', $brand->id) }}"
                                class="px-4 py-2 rounded-xl border border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-black transition">
 
                                 Изменить
