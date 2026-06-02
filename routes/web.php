@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Authorize\AuthController;
-use App\Http\Controllers\Market\CartController;
+use App\Http\Controllers\market\CartController;
 use App\Http\Controllers\market\CustomController;
-use App\Http\Controllers\Market\PageController;
-use App\Http\Controllers\Market\AdminController as MarketController;
+use App\Http\Controllers\market\PageController;
+use App\Http\Controllers\market\AdminController as MarketController;
 use App\Http\Controllers\market\CategoryController;
 use App\Http\Controllers\market\BrandController;
 use App\Http\Controllers\market\ProductController;

@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Market;
+namespace App\Http\Controllers\market;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $brands = Brand::withCount('products')->get();
+        $categories = Category::all();
 
-        return view('market.admin.brand.brands', compact('brands'));
+        return view('market.admin.category.categories', compact('categories'));
     }
 
     /**
@@ -23,7 +24,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('market.admin.brand.create');
+        return view('market.admin.category.create');
     }
 
     /**
@@ -33,9 +34,9 @@ class BrandController extends Controller
     {
         $data = $request->all();
 
-        Brand::create($data);
+        Category::create($data);
 
-        return redirect()->route('market.admin.brands');
+        return redirect()->route('market.admin.categories');
     }
 
     /**
@@ -43,9 +44,9 @@ class BrandController extends Controller
      */
     public function show(string $id)
     {
-        $brand = Brand::find($id);
+        $category = Category::find($id);
 
-        return view('market.admin.brand.show', compact('brand'));
+        return view('market.admin.category.show', compact('category'));
     }
 
     /**
@@ -53,9 +54,9 @@ class BrandController extends Controller
      */
     public function edit(string $id)
     {
-        $brand = Brand::find($id);
+        $category = Category::find($id);
 
-        return view('market.admin.brand.edit', compact('brand'));
+        return view('market.admin.category.edit', compact('category'));
     }
 
     /**
@@ -63,13 +64,13 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $brand = Brand::find($id);
-
         $data = $request->all();
 
-        $brand->update($data);
+        $category = Category::find($id);
 
-        return redirect()->route('market.admin.brands');
+        $category->update($data);
+
+        return redirect()->route('market.admin.categories');
     }
 
     /**
@@ -77,8 +78,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        Brand::destroy($id);
+        Category::destroy($id);
 
-        return redirect()->route('market.admin.brands');
+        return redirect()->route('market.admin.categories');
     }
 }
