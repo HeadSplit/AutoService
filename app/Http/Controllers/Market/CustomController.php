@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\market;
+namespace App\Http\Controllers\Market;
 
 use App\Http\Controllers\Controller;
 use App\Models\Custom;
