@@ -13,7 +13,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::all();
+        $brands = Brand::withCount('products')->get();
 
         return view('market.admin.brand.brands', compact('brands'));
     }
@@ -35,7 +35,7 @@ class BrandController extends Controller
 
         Brand::create($data);
 
-        return redirect()->route('market.catalog');
+        return redirect()->route('market.admin.brands');
     }
 
     /**

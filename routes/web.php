@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
 
 
             Route::get('/brands',[BrandController::class,'index'])->name('market.admin.brands');
-            Route::get('/brand/{brand}',[BrandController::class,'show'])->name('market.admin.brand');
+            Route::get('/brand/{brand}',[BrandController::class,'show'])->name('market.admin.brand.show');
             Route::get('/brands/create',[BrandController::class,'create'])->name('market.admin.brands.create');
             Route::post('/brands', [BrandController::class, 'store'])->name('market.admin.brands.store');
             Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('market.admin.brands.update');

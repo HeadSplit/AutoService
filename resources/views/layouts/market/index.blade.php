@@ -176,8 +176,12 @@
         <div class="px-6 py-6 flex flex-col gap-4">
 
             <a href="{{ route('home') }}">Главная</a>
-            <a href="#catalog">Каталог</a>
-            <a href="#brands">Бренды</a>
+            <a href="{{route('market.catalog')}}">Каталог</a>
+            <a href="#{{route('market.admin.brands')}}">Бренды</a>
+            <a href="{{route('home')}}">СТО</a>
+            @can('admin')
+                <a href="{{route('market.admin')}}">Админ-меню</a>
+            @endcan
             <a href="#contacts">Контакты</a>
 
             <hr class="border-white/10">

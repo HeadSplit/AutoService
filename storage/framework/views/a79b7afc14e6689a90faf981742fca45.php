@@ -176,8 +176,12 @@
         <div class="px-6 py-6 flex flex-col gap-4">
 
             <a href="<?php echo e(route('home')); ?>">Главная</a>
-            <a href="#catalog">Каталог</a>
-            <a href="#brands">Бренды</a>
+            <a href="<?php echo e(route('market.catalog')); ?>">Каталог</a>
+            <a href="#<?php echo e(route('market.admin.brands')); ?>">Бренды</a>
+            <a href="<?php echo e(route('home')); ?>">СТО</a>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin')): ?>
+                <a href="<?php echo e(route('market.admin')); ?>">Админ-меню</a>
+            <?php endif; ?>
             <a href="#contacts">Контакты</a>
 
             <hr class="border-white/10">
