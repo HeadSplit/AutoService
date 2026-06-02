@@ -51,7 +51,7 @@ class UserController extends Controller
             'name' => $request->name,
             'last_name' => $request->last_name,
             'work_experience' => $request->work_experience,
-            'image' => $image?? null,
+            'image' => $user->image,
         ]);
         return redirect()->route('masters')->with('success', 'Мастер успешно добавлен!');
     }

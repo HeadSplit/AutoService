@@ -31,10 +31,6 @@
             <input type="date" name="work_experience" id="work_experience" class="form-control" required>
         </div>
 
-        <div class="form-group" style="width: 70%">
-            <lable class="text-white">Фотография</lable>
-            <input type="url" name="image" id="image" class="form-control">
-        </div>
 
         <button type="submit" class="btn btn-primary">Добавить мастера</button>
     </form>

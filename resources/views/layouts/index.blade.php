@@ -21,7 +21,8 @@
             <div class="h-20 flex items-center justify-between">
 
                 {{-- LOGO --}}
-                <a href="{{ route('home') }}" class="flex items-center gap-3 shrink-0">
+                <a href="{{ route('home') }}"
+                   class="flex items-center gap-3 shrink-0 text-white no-underline">
 
                     <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
                         <span class="font-bold text-black">В</span>

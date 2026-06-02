@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('market.admin.categories', compact('categories'));
+        return view('market.admin.category.categories', compact('categories'));
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        return view('market.catalog', compact('category'));
+        return view('market.admin.category.show', compact('category'));
     }
 
     /**
