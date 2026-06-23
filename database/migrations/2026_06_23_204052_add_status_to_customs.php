@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('customs', function (Blueprint $table) {
             $table->enum('status', ['new', 'in_progress', 'completed'])
-                ->default('accepted');
+                ->default('new');
         });
     }
 
