@@ -20,7 +20,7 @@ class Custom extends Model
     public function statusLabel()
     {
         return match ($this->status) {
-            'accepted' => 'Новый',
+            'new' => 'Новый',
             'in_progress' => 'В работе',
             'completed' => 'Завершён',
             default => 'Неизвестно',

@@ -26,7 +26,7 @@
                     class="w-full bg-black border border-white/10 rounded-2xl p-4">
 
                     <option
-                        value="accepted"
+                        value="new"
                         @selected($custom->status === 'new')>
 
                         Новый
