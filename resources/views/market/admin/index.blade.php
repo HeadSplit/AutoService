@@ -71,6 +71,23 @@
 
             </a>
 
+            <a href="{{ route('custom.index') }}"
+               class="group bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-amber-500 transition">
+
+                <div class="w-14 h-14 rounded-2xl bg-amber-500 flex items-center justify-center text-black text-2xl mb-6">
+                    📋
+                </div>
+
+                <h2 class="text-xl font-semibold text-white mb-2">
+                    Заказы клиентов
+                </h2>
+
+                <p class="text-gray-400">
+                    Просмотр, изменение статусов и удаление заявок клиентов.
+                </p>
+
+            </a>
+
         </div>
 
     </section>

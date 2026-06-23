@@ -26,7 +26,7 @@
 
 <body class="bg-[#080808] text-white min-h-screen flex flex-col">
 
-<header class="fixed top-0 left-0 right-0 z-50">
+<header class="sticky top-0 left-0 right-0 z-50">
 
     <nav class="border-b border-white/10 bg-black/50 glass">
 
@@ -73,14 +73,14 @@
                         Каталог
                     </a>
 
-                    <a href="#brands"
+                    <a href="<?php echo e(route('market.brands')); ?>"
                        class="text-gray-300 hover:text-white transition">
                         Бренды
                     </a>
 
-                    <a href="#contacts"
+                    <a href="<?php echo e(route('market.categories')); ?>"
                        class="text-gray-300 hover:text-white transition">
-                        Контакты
+                        Категории
                     </a>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin')): ?>
                     <a href="<?php echo e(route('market.admin')); ?>"
@@ -98,15 +98,6 @@
                 <div class="hidden lg:flex items-center gap-4">
 
                     
-                    <form>
-
-                        <input
-                            type="text"
-                            placeholder="Поиск запчастей..."
-                            class="w-64 px-4 py-2 rounded-xl bg-white/5 border border-white/10 focus:border-amber-500 outline-none text-sm">
-
-                    </form>
-
                     <?php if(auth()->guard()->guest()): ?>
 
                         <a href="<?php echo e(route('login')); ?>"
@@ -141,15 +132,23 @@
 
                     <?php endif; ?>
 
-                    
-                    <a href="#"
-                       class="relative p-3 rounded-xl border border-white/10 hover:border-amber-500 transition">
+                    <?php
+                        use App\Services\CartService;
+                    ?>
+
+                    <a href="<?php echo e(route('cart.index')); ?>"
+                       class="relative p-3 rounded-xl border border-white/10 hover:border-amber-500 transition text-white">
 
                         🛒
 
-                        <span class="absolute -top-2 -right-2 bg-amber-500 text-black text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                            0
-                        </span>
+                        <?php $count = CartService::count(); ?>
+
+                        <?php if($count > 0): ?>
+                            <span class="absolute -top-2 -right-2 bg-amber-500 text-black text-xs w-5 h-5 rounded-full flex items-center justify-center">
+            <?php echo e($count); ?>
+
+        </span>
+                        <?php endif; ?>
 
                     </a>
 

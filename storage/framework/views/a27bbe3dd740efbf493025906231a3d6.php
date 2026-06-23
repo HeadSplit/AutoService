@@ -33,7 +33,7 @@
 
                 <div class="mt-10 flex flex-wrap gap-4">
 
-                    <a href="#catalog"
+                    <a href="<?php echo e(route('market.catalog')); ?>"
                        class="px-8 py-4 rounded-full bg-amber-500 text-black font-medium transition hover:scale-105">
                         Перейти в каталог
                     </a>
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="group bg-[#111] rounded-3xl overflow-hidden border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1635774855536-972b9d1f90f3?q=80&w=1200"
+                    <img src="https://автошик.рф/upload/medialibrary/199/ri96b6pu9ajz6av3ftzjyvkmkw6lhzwq.jpg"
                          class="h-56 w-full object-cover group-hover:scale-105 transition duration-500">
                     <div class="p-6">
                         <h3 class="text-xl text-white font-semibold">
@@ -178,42 +178,59 @@
 
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                <?php for($i = 0; $i < 4; $i++): ?>
+                <?php $__currentLoopData = $products->take(4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                    <div class="bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-amber-500/40 transition">
+                    <div class="bg-[#111] border border-white/10 rounded-3xl overflow-hidden hover:border-amber-500/40 transition flex flex-col">
 
-                        <img src="https://placehold.co/600x400/111111/ffffff?text=Product"
-                             class="w-full h-52 object-cover">
+                        <?php if($product->image): ?>
+                            <img src="<?php echo e(asset('storage/' . $product->image)); ?>"
+                                 class="w-full h-52 object-cover"
+                                 alt="<?php echo e($product->name); ?>">
+                        <?php else: ?>
+                            <div class="w-full h-52 bg-black/20 flex items-center justify-center text-gray-500">
+                                Нет фото
+                            </div>
+                        <?php endif; ?>
 
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
 
                         <span class="text-sm text-gray-500">
-                            Bosch
+                            <?php echo e($product->brand?->name ?? 'Без бренда'); ?>
+
                         </span>
 
-                            <h3 class="text-white font-semibold mt-2">
-                                Масляный фильтр
+                            <h3 class="text-white font-semibold mt-2 min-h-[48px]">
+                                <?php echo e($product->name); ?>
+
                             </h3>
 
-                            <div class="mt-4 flex items-center justify-between">
+                            <div class="mt-auto flex items-center justify-between pt-4">
 
-                            <span class="text-2xl text-amber-400 font-bold">
-                                1 990 ₽
+                            <span class="text-xl text-amber-400 font-bold">
+                                <?php echo e(number_format($product->price, 0, ',', ' ')); ?> ₽
                             </span>
 
-                                <button class="px-4 py-2 rounded-xl bg-amber-500 text-black font-medium">
-                                    В корзину
-                                </button>
+                                <form method="POST" action="<?php echo e(route('cart.add', $product->id)); ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="quantity" value="1">
+
+                                    <button class="px-4 py-2 rounded-xl bg-amber-500 text-black font-medium hover:scale-105 transition">
+                                        В корзину
+                                    </button>
+                                </form>
 
                             </div>
 
                         </div>
-
+                            <a href="<?php echo e(route('market.catalog.product', $product->slug)); ?>"
+                               class="px-4 py-2 rounded-xl border border-white/20 text-white hover:border-amber-500 hover:text-amber-400 transition">
+                                Просмотреть
+                            </a>
                     </div>
 
-                <?php endfor; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </div>
 

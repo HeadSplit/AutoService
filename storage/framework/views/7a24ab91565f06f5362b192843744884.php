@@ -1,21 +1,20 @@
-@extends('layouts.market.index')
-
-@section('main')
+<?php $__env->startSection('main'); ?>
 
     <div class="max-w-2xl mx-auto px-6 py-12">
 
         <div class="bg-[#111] border border-white/10 rounded-3xl p-8">
 
             <h1 class="text-3xl font-bold mb-8">
-                Редактирование заказа #{{ $custom->id }}
+                Редактирование заказа #<?php echo e($custom->id); ?>
+
             </h1>
 
             <form
-                action="{{ route('custom.update', $custom) }}"
+                action="<?php echo e(route('custom.update', $custom)); ?>"
                 method="POST">
 
-                @csrf
-                @method('PUT')
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
 
                 <label class="block mb-3 text-gray-400">
                     Статус заказа
@@ -27,7 +26,7 @@
 
                     <option
                         value="new"
-                        @selected($custom->status === 'new')>
+                        <?php if($custom->status === 'new'): echo 'selected'; endif; ?>>
 
                         Новый
 
@@ -35,7 +34,7 @@
 
                     <option
                         value="in_progress"
-                        @selected($custom->status === 'in_progress')>
+                        <?php if($custom->status === 'in_progress'): echo 'selected'; endif; ?>>
 
                         В работе
 
@@ -43,7 +42,7 @@
 
                     <option
                         value="completed"
-                        @selected($custom->status === 'completed')>
+                        <?php if($custom->status === 'completed'): echo 'selected'; endif; ?>>
 
                         Завершён
 
@@ -64,4 +63,6 @@
 
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.market.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/resources/views/market/custom/edit.blade.php ENDPATH**/ ?>

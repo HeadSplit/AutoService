@@ -126,9 +126,14 @@ Route::middleware('auth')->group(function () {
             Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('market.admin.categories.destroy');
 
 
+            Route::get('/customs', [CustomController::class, 'index'])->name('custom.index');
+            Route::get('/custom/edit/{custom}', [CustomController::class, 'edit'])->name('custom.edit');
+            Route::put('/custom/admin/{custom}', [CustomController::class, 'update'])->name('custom.update');
+            Route::put('/customs/{custom}', [CustomController::class, 'update'])
+                ->name('custom.update');
 
-            Route::get('/custom/edit/{custom}', [CustomController::class, 'edit'])->name('market.admin.custom.edit');
-            Route::put('/custom/{custom}', [CustomController::class, 'update'])->name('market.admin.custom.update');
+            Route::delete('/admin/customs/{custom}', [CustomController::class, 'destroy'])
+                ->name('custom.destroy');
         });
     });
 

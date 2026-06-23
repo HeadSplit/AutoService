@@ -88,21 +88,22 @@
             
             <div class="lg:col-span-2">
 
+                
                 <div class="flex items-center justify-between mb-8">
 
-                    <h1 class="text-3xl font-bold">
-                        Мои заказы
+                    <h1 class="text-3xl font-bold text-white">
+                        Мои заказы (СТО)
                     </h1>
 
                     <span class="text-gray-500">
-                    <?php echo e(count($orders)); ?> заказов
-                </span>
+            <?php echo e(count($orders)); ?> заказов
+        </span>
 
                 </div>
 
                 <?php if(count($orders)): ?>
 
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <div class="grid md:grid-cols-2 gap-6 mb-12">
 
                         <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
@@ -115,7 +116,7 @@
 
                                 <div class="p-6">
 
-                                    <h3 class="text-xl font-semibold mb-3">
+                                    <h3 class="text-xl font-semibold mb-3 text-white">
                                         <?php echo e($order->mark); ?> <?php echo e($order->model); ?>
 
                                     </h3>
@@ -125,9 +126,8 @@
 
                                     </p>
 
-                                    <a
-                                        href="<?php echo e(route('show-order', [$order->uuid])); ?>"
-                                        class="inline-flex items-center px-5 py-3 bg-amber-500 text-black rounded-xl font-medium">
+                                    <a href="<?php echo e(route('show-order', [$order->uuid])); ?>"
+                                       class="inline-flex items-center px-5 py-3 bg-amber-500 text-black rounded-xl font-medium">
 
                                         Подробнее
 
@@ -143,14 +143,92 @@
 
                 <?php else: ?>
 
-                    <div class="bg-[#111] border border-white/10 rounded-3xl p-12 text-center">
+                    <div class="bg-[#111] border border-white/10 rounded-3xl p-8 text-center mb-12">
 
-                        <h2 class="text-2xl font-semibold mb-3">
-                            Заказов пока нет
+                        <h2 class="text-xl font-semibold text-white mb-2">
+                            СТО заказов нет
                         </h2>
 
                         <p class="text-gray-500">
-                            Вы ещё не оставили ни одной заявки на обслуживание или ваша заявка
+                            Вы ещё не оставляли заявки на обслуживание
+                        </p>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+                
+                <div class="flex items-center justify-between mb-8">
+
+                    <h1 class="text-3xl font-bold text-white">
+                        Мои заказы (Магазин)
+                    </h1>
+
+                    <span class="text-gray-500">
+            <?php echo e(count($marketOrders)); ?> заказов
+        </span>
+
+                </div>
+
+                <?php if(count($marketOrders)): ?>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+
+                        <?php $__currentLoopData = $marketOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                            <div class="bg-[#111] border border-white/10 rounded-3xl p-6 hover:border-amber-500/30 transition">
+
+                                <div class="mb-4">
+
+                                    <h3 class="text-xl font-semibold text-white">
+                                        Заказ #<?php echo e($order->id); ?>
+
+                                    </h3>
+
+                                    <p class="text-gray-500 text-sm mt-1">
+                                        Статус: <?php echo e($order->status); ?>
+
+                                    </p>
+
+                                </div>
+
+                                <div class="text-sm text-gray-400 space-y-1 mb-5">
+
+                                    <div>
+                                        Товаров: <?php echo e($order->items->count()); ?>
+
+                                    </div>
+
+                                    <div>
+                                        Сумма: <?php echo e(number_format($order->total, 0, ',', ' ')); ?> ₽
+                                    </div>
+
+                                </div>
+
+                                <a href="<?php echo e(route('custom.show', $order->id)); ?>"
+                                   class="inline-flex items-center px-5 py-3 bg-amber-500 text-black rounded-xl font-medium">
+
+                                    Подробнее
+
+                                </a>
+
+                            </div>
+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <div class="bg-[#111] border border-white/10 rounded-3xl p-8 text-center">
+
+                        <h2 class="text-xl font-semibold text-white mb-2">
+                            Маркет заказов нет
+                        </h2>
+
+                        <p class="text-gray-500">
+                            Вы ещё не оформляли покупки в магазине
                         </p>
 
                     </div>
@@ -158,10 +236,6 @@
                 <?php endif; ?>
 
             </div>
-
-        </div>
-
-    </div>
 
 <?php $__env->stopSection(); ?>
 

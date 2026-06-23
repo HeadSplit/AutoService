@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class CustomController extends Controller
 {
+    public function index()
+    {
+        $customs = Custom::latest()->paginate(15);
+        return view('market.custom.index', compact('customs'));
+    }
+
     public function store(Request $request)
     {
         $user = auth()->user();
@@ -25,7 +31,6 @@ class CustomController extends Controller
 
             $order = Custom::create([
                 'user_id' => $user->id,
-                'status' => 'accepted',
                 'total' => 0,
             ]);
 
@@ -69,11 +74,11 @@ class CustomController extends Controller
         return view('market.custom.show', compact('order'));
     }
 
-    public function edit(string $id)
+    public function edit(Custom $custom)
     {
-        $order = Custom::findOrFail($id);
+        $custom->load('items.product');
 
-        return view('market.custom.edit', compact('order'));
+        return view('market.custom.edit', compact('custom'));
     }
 
     public function update(Request $request, string $id)
@@ -81,7 +86,7 @@ class CustomController extends Controller
         $order = Custom::findOrFail($id);
 
         $data = $request->validate([
-            'status' => 'required|string|max:50',
+            'status' => ['required', 'in:new,in_progress,completed']
         ]);
 
         $order->update($data);
@@ -89,5 +94,14 @@ class CustomController extends Controller
         return redirect()
             ->route('custom.show', $order->id)
             ->with('success', 'Заказ обновлён');
+    }
+
+    public function destroy(Custom $custom)
+    {
+        $custom->delete();
+
+        return redirect()
+            ->route('custom.index')
+            ->with('success', 'Заказ удален');
     }
 }

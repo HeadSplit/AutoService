@@ -13,7 +13,7 @@
             </h1>
 
             <p class="text-gray-400 mt-2">
-                Статус: {{ $order->status }}
+                Статус: {{ $order->statusLabel() }}
             </p>
 
             <p class="text-amber-400 font-bold mt-2">
@@ -36,6 +36,25 @@
 
                         <div class="text-white font-semibold">
                             {{ $item->product->name ?? 'Удалённый товар' }}
+                        </div>
+
+                        {{-- БРЕНД + КАТЕГОРИЯ --}}
+                        <div class="text-gray-400 text-sm mt-2 space-y-1">
+
+                            <div>
+                                Бренд:
+                                <span class="text-amber-400">
+                        {{ $item->product->brand->name ?? '—' }}
+                    </span>
+                            </div>
+
+                            <div>
+                                Категория:
+                                <span class="text-amber-400">
+                        {{ $item->product->category->name ?? '—' }}
+                    </span>
+                            </div>
+
                         </div>
 
                         <div class="text-gray-400 text-sm mt-2">
